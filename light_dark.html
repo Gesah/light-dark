@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>toggle button</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <style>
+    body {
+      /* menggunakan layout flex */
+      display: flex;
+      /* otomatis ia akan berada di tengah */
+      justify-content: center;
+      align-items: center;
+      /* min tinggi 100 vh */
+      min-height: 100vh;
+      /* background hitam */
+      background: #ffffff;
+    }
+
+    /* kita buat button dengan memanggil id */
+    #toggle {
+      /* position relation agar bisa di pindah - pindahkan */
+      position: relative;
+      display: block;
+
+      /* kita buat button nya lebarnya 320 px */
+      width: 320px;
+
+      /* kita buat panjang nya 160px */
+      height: 160px;
+
+      /* border radius bagian ujungnya kita buat melengkung, kalau ga menggunakan 
+border radius nanti nya jadi kotak, kalian bisa coba sendiri ya */
+      border-radius: 160px;
+
+      /* kita buat background menjadi warna hitam */
+      background: rgb(255, 255, 255);
+
+      /* transition ketika kita klik dia akan ada delay nya 0.5 s jadi ga langsung 
+cepat gitu gerakan perpindahannya */
+      transition: 0.5s;
+
+      /* cursor pointer, ketika kita sentuh pointer kita / mouse kita jadi gambar telunjuk  */
+      cursor: pointer;
+
+      /* bayangan pada box nya kalian bisa otak atik sendiri, ketebelanya, opacity nya 
+kalian bisa ubah - ubah untuk tau cara kerjanya seperti apa */
+      box-shadow: inset 0 8px 60px rgba(0, 0, 0, 0.1),
+        inset 0 8px 8px rgba(0, 0, 0, 0.1), inset 0 -4px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    /* ketika kita klik button nya maka dia akan berubah menjadi warna putih */
+    body.active {
+      background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/starfield_stock_1.jpg);
+    }
+
+    /* ketika toggle active kita click maka background pada button akaan berubah berwarna puth */
+    #toggle.active {
+      /* button background akan berubah menjadi warna putih */
+      background: rgb(101, 255, 139);
+
+      /* bayangan pada button akan berubah menjadi abu - abu, kalian bisa otak atik sendiri, 
+sesuka kalian untuk mengetahui warna yang tepat  */
+      box-shadow: inset 0 2px 60px rgba(0, 0, 0, 0.1),
+        inset 0 2px 8px rgba(0, 0, 0, 0.1), inset 0 -4px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    /* kita buat bulatan di dalam button tersebut */
+    #toggle .indicator {
+      position: absolute;
+
+      top: 0;
+      left: 0;
+      /* ukuran lebar dan tinggi */
+      width: 160px;
+      height: 160px;
+      background: linear-gradient(to bottom, #eaeaea, #f9f9f9);
+
+      /* border radius 50% jadi akan berubah menjadi bulat  */
+      border-radius: 50%;
+      transform: scale(0.9);
+
+      /* bulatan bayangannya atau bisa di bilang pinggirannya  */
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5),
+        inset 0 4px 4px rgba(255, 255, 255, 0.2),
+        inset 0 -4px 4px rgba(255, 255, 255, 0.2);
+
+      /* ketika di klik dia akan delay sedikit */
+      transition: 0.1s;
+    }
+
+    /* ketika di klik bulatan nya akan berubah menjadi warna putih */
+    #toggle.active .indicator {
+      /* ketika kita klik maka bulat nya akan pindah ke kanan itu karena 
+kita menggunakan left: 160px; / coba kalian gedein ukurannya nanti malah makin menjauh, kalian harus coba */
+      left: 160px;
+
+      /* kita buat backgroundnya */
+      background: linear-gradient(to bottom, #eaeaea, #f9f9f9);
+
+      /* kotak bayangan nya kita pakein juga boy */
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5),
+        inset 0 4px 4px rgba(255, 255, 255, 0.2),
+        inset 0 -4px 4px rgba(255, 255, 255, 0.2);
+    }
+  </style>
+  <body>
+    <!-- Kita buat id toggle -->
+    <div id="toggle">
+      <!-- kita buat class indicator -->
+      <i class="indicator"></i>
+    </div>
+    <script>
+      // kita panggil element body dan toggle
+      const body = document.querySelector("body");
+      const toggle = document.getElementById("toggle");
+
+      // ketika toggle kita klik maka dia akan menambahkan class yang bernama active
+      // yang mana active itu akan kita gunakan di dalam css
+      toggle.onclick = function () {
+        toggle.classList.toggle("active");
+        body.classList.toggle("active");
+      };
+    </script>
+  </body>
+</html>
